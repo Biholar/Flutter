@@ -1,8 +1,14 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_signin/screens/homescreen.dart';
+import 'package:flutter_signin/utilities/auth.dart';
+import 'package:flutter_signin/utilities/firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthorizationPage extends StatefulWidget {
   AuthorizationPage({Key? key}) : super(key: key);
@@ -39,12 +45,14 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
     Widget _button() {
       return TextButton(
-        onPressed: () {},
+        onPressed: () async {
+          await Auth.signInWithGoogle(context);
+        },
         style: TextButton.styleFrom(
           primary: Theme.of(context).primaryColor,
           backgroundColor: Colors.white,
           shadowColor: Colors.black,
-          elevation: 8.0,
+          elevation: 5.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
